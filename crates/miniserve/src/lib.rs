@@ -71,7 +71,6 @@ impl Server {
             TcpListener::bind("127.0.0.1:3001").expect("Failed to connect to 127.0.0.1:3001");
         let this = Arc::new(self);
         for stream in listener.incoming().flatten() {
-            
             let this_ref = Arc::clone(&this);
             thread::spawn(move || {
                 let _ = this_ref.handle(&stream);
